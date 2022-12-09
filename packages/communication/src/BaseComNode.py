@@ -13,7 +13,7 @@ class BaseComNode:
     easier
     """
     # TODO move these constants somewhere else as params?
-    TIME_OUT_SEC = 60 # Duration after which the node times out and a time_out flag is published. TODO 10min for the moment
+    TIME_OUT_SEC = 2*60 # Duration after which the node times out and a time_out flag is published. TODO 10min for the moment
 
     def __init__(self, buffer_length=60, buffer_forget_time=40):
         # buffers parameters used to keep active points
@@ -51,7 +51,15 @@ class BaseComNode:
 
         :param data: intersection data given by ROS
         """
-        new_intersection_type = IntersectionType(data)
+        new_intersection_type = IntersectionType(data.infos)
+        info = TagInfo()
+        new_intersection_type = IntersectionType.Unknown
+        if(data.infos.tag_type == info.SIGN):
+             if(data.infos.traffic_sign_type == info.STOP):
+                 new_intersection_type = IntersectionType.StopSign
+             elif(data.infos.traffic_sign_type == info.T_LIGHT_AHEAD):
+                 new_intersection_type = IntersectionType.TrafficLight
+
 
         if self.curr_intersection_type == new_intersection_type:
             return
@@ -161,6 +169,5 @@ class BaseComNode:
         All state updates should be done here
         """
         if action_state in [ActionState.Go, ActionState.TimedOut]:
-            self.blink_at(0)
             self.intersection_type_callback(IntersectionType.Unknown)
             self.publish_signal(action_state)
