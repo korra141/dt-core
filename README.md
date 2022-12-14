@@ -18,7 +18,7 @@ First you need to build it on the bot
 Run the code from this repo root (dt-core)  
 `dts devel run -H YOURBOTNAME.local`  
 
-The bot will start flashing its LEDs and the negotiation will run indefinitely. Bots that get the priority will set their LEDs to GREEN. Bots that don't get priority in the current negotiation cycle will set their LEDs to BLUE. There is a possibility a bot reaches a time-out state if it does not get a priority for a certain number of cycles (defined in `BaseComNode` as `TIME_OUT_SEC`).  
+The bot will start flashing its LEDs and the negotiation will run indefinitely. Bots that get the priority will set their LEDs to GREEN. Bots that don't get priority in the current negotiation cycle will set their LEDs to BLUE. There is a possibility a bot reaches a time-out state if it does not get a priority for a certain period of time (defined in `BaseComNode` as `TIME_OUT_SEC`).  
 
 NOTE: For the demo, if a bot reaches GREEN light we can simply stop it.  
 
