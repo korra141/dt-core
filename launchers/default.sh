@@ -13,7 +13,8 @@ dt-launchfile-init --quiet
 # NOTE: Use `dt-exec COMMAND` to run the main process (blocking process)
 
 # launching app
-dt-launcher-default-${ROBOT_TYPE}
+#dt-launcher-default-${ROBOT_TYPE}
+dt-exec roslaunch --wait duckietown_demos communication.launch
 
 
 # ----------------------------------------------------------------------------

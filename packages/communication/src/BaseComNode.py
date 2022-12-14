@@ -21,8 +21,9 @@ class BaseComNode:
     FPS_UPDATE_PERIOD_SEC = 1 # Period in sec to compute and update fps
     DEFAULT_FPS = 30
 
-    def __init__(self, buffer_length=120, buffer_forget_time=40):
+    def __init__(self, buffer_length=60, buffer_forget_time=40):
         # buffers parameters used to keep active points
+        print(f"buffer_length: {buffer_length}")
         self.buffer_length = buffer_length
         self.buffer_forget_time = buffer_forget_time
 
