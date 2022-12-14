@@ -18,7 +18,7 @@ class CommunicationNode(DTROS, BaseComNode):
     def __init__(self, node_name):
         # initialize the DTROS parent class
         DTROS.__init__(self, node_name=node_name, node_type=NodeType.COMMUNICATION)
-        BaseComNode.__init__(self, 60, 40)
+        BaseComNode.__init__(self, buffer_length=60, buffer_forget_time=40)
 
         # TODO: Parameters -> self._some_param = rospy.get_param("~some_parameter", False)
 
